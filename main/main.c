@@ -57,7 +57,9 @@ void app_main(void)
     i2c_master_dev_handle_t mpu_handle = init_mpu_device(main_bus_handle);
 
     while(1) {
+        // Array of six, 8 bit integers (1 byte each) 
         uint8_t buffer[6] = {0};
+        // Starting address (ACCEL_XOUT_H)
         uint8_t reg_addr = 0x3B;
 
         // Pass in mpu_handle as well as how many bytes for the esp32 to read and receive 
@@ -66,10 +68,16 @@ void app_main(void)
 
         // Check if the transaction succeeded
         if (ret == ESP_OK) {
-            // Print the 6 raw hex bytes trapped in your array elements
-            ESP_LOGI(TAG, "Success! Raw Bytes: [0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X]", 
-                     buffer[0], buffer[1], buffer[2], buffer[3], buffer[4], buffer[5]);
-        } else {
+            // Combine MSB (high byte) and LSB (low byte) for x, y, z axis into three 16 bit integers respectively
+            // Typecasting is performed to ensure Two's Complement math is completed and each integer is positive
+            int16_t accel_x = (int16_t) ((buffer[0] << 8) | buffer[1]);
+            int16_t accel_y = (int16_t) ((buffer[2] << 8) | buffer[3]);
+            int16_t accel_z = (int16_t) ((buffer[4] << 8) | buffer[5]);
+
+            // Print x, y, z axis 16 bit values
+            ESP_LOGI(TAG, "Accelerometer raw values -> X: %d, Y: %d, Z: %d", accel_x, accel_y, accel_z);
+        } 
+        else {
             // This will print if lines are disconnected or target is wrong, without crashing
             ESP_LOGE(TAG, "I2C Transaction Failed! Error code: %s", esp_err_to_name(ret));
         }
