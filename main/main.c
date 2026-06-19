@@ -46,9 +46,15 @@ i2c_master_dev_handle_t init_mpu_device(i2c_master_bus_handle_t bus_handle) {
 
 void app_main(void)
 {
+    uint8_t buffer[6] = {0};
+    uint8_t reg_addr = 0x3B;
+
     // Initializes the master bus
     i2c_master_bus_handle_t main_bus_handle = init_i2C_master_port();
 
     // Initializes the mpu6500 device into the master bus
     i2c_master_dev_handle_t mpu_handle = init_mpu_device(main_bus_handle);
+
+    // Read the mpu register address and specify how many bytes to read and receive
+    ESP_ERROR_CHECK(i2c_master_transmit_receive(mpu_handle, &reg_addr, 1, buffer, 6, -1));
 }
