@@ -82,6 +82,6 @@ void app_main(void)
             ESP_LOGE(TAG, "I2C Transaction Failed! Error code: %s", esp_err_to_name(ret));
         }
 
-        vTaskDelay(pdMS_TO_TICKS(500));
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
