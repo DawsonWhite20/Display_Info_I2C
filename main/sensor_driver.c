@@ -1,5 +1,6 @@
-#include "sensor_driver.h"
 #include "driver/i2c_master.h"
+
+#include "sensor_driver.h"
 
 // Private constants
 #define MPU_DEVICE_ADDRESS 0x68
