@@ -38,16 +38,26 @@ void app_main(void) {
     while (1) {
         // Typedef struct from sensor_driver.h
         mpu_raw_data_t sensor_values; 
+        esp_err_t ret;
 
-        esp_err_t ret = mpu_sensor_read_accel(mpu_handle, &sensor_values);
+        ret = mpu_sensor_read_accel(mpu_handle, &sensor_values);
 
         if (ret == ESP_OK) {
             // Print to the console bit-shifted x, y, and z data from acceleremoter
-            ESP_LOGI(TAG, "Accelerometer -> x: %d, y: %d, z: %d", sensor_values.x_accel, sensor_values.y_accel, sensor_values.z_accel);
+            ESP_LOGI(TAG, "Accelerometer -> x: %d, y: %d, z: %d", 
+                sensor_values.x_accel, sensor_values.y_accel, sensor_values.z_accel);
         }
         else {
             // Used for critical failure
             ESP_LOGE(TAG, "Error: %s", esp_err_to_name(ret));
+        }
+
+        ret = mpu_sensor_read_gyro(mpu_handle, &sensor_values);
+
+        if (ret == ESP_OK) {
+            // Print to the console bit-shifted x, y, and z data from gyroscope
+            ESP_LOGI(TAG, "Gyroscope -> x: %d, y: %d, z: %d", 
+                sensor_values.x_gyro, sensor_values.y_gyro, sensor_values.z_gyro);
         }
 
         vTaskDelay(pdMS_TO_TICKS(1000));

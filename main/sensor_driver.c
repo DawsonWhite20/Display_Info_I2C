@@ -6,7 +6,7 @@
 #define MPU_DEVICE_ADDRESS 0x68
 #define MPU_SCL_SPEED_HZ 100000
 #define MPU_REG_ACCEL_XOUT_H 0x3B // Starting register for accelerometer data
-#define MPU_REG_GYRO_XOUT_H 43 // Starting register for gyroscope data
+#define MPU_REG_GYRO_XOUT_H 0x43 // Starting register for gyroscope data
 
 esp_err_t mpu_sensor_init(i2c_master_bus_handle_t bus_handle, i2c_master_dev_handle_t *out_device_handle) {
     // MPU device settings
