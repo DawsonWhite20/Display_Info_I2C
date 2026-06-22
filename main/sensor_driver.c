@@ -18,7 +18,7 @@ esp_err_t mpu_sensor_init(i2c_master_bus_handle_t bus_handle, i2c_master_dev_han
 
     // Add MPU device to master bus after configuration
     return i2c_master_bus_add_device(bus_handle, &dev_cfg, out_device_handle);
-};
+}
 
 esp_err_t mpu_sensor_read_accel(i2c_master_dev_handle_t device_handle, mpu_raw_data_t *out_data) {
     if (out_data == NULL) {
@@ -40,7 +40,7 @@ esp_err_t mpu_sensor_read_accel(i2c_master_dev_handle_t device_handle, mpu_raw_d
     }
 
     return ret;
-};
+}
 
 esp_err_t mpu_sensor_read_gyro(i2c_master_dev_handle_t device_handle, mpu_raw_data_t *out_data) {
     if (out_data == NULL) {
@@ -62,4 +62,4 @@ esp_err_t mpu_sensor_read_gyro(i2c_master_dev_handle_t device_handle, mpu_raw_da
     }
 
     return ret;
-};
+}

@@ -3,6 +3,7 @@
 #include "driver/i2c_master.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "esp_lcd_io_i2c.h"
 
 #include "sensor_driver.h"
 
@@ -32,8 +33,11 @@ void app_main(void) {
 
     // Address of mpu handle will later be passed into mpu_sensor_init() and added to master bus
     i2c_master_dev_handle_t mpu_handle = NULL;
-
     ESP_ERROR_CHECK(mpu_sensor_init(master_bus_handle, &mpu_handle));
+
+    // OLED initialization of io and panel handles
+    esp_lcd_panel_io_handle_t oled_io_handle = NULL;
+    esp_lcd_panel_handle_t oled_panel_handle = NULL;
 
     while (1) {
         // Typedef struct from sensor_driver.h
