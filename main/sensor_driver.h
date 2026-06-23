@@ -18,7 +18,7 @@ typedef struct {
 /**
  *  @brief Registers the MPU sensor device onto the master bus
  *  @param bus_handle The handle of the I2C master bus
- *  @param out_device_handle The handle of the MPU sensor device
+ *  @param out_device_handle The handle of thex MPU sensor device
  *  @return ESP_OK if successful, otherwise an error code
  */
 

@@ -16,6 +16,9 @@
 static const char *TAG = "MAIN";
 
 void app_main(void) {
+    char str_ax[16], str_ay[16], str_az[16];
+    char str_gx[16], str_gy[16], str_gz[16];
+
     i2c_master_bus_handle_t master_bus_handle;
 
     // Configure master bus
@@ -66,7 +69,27 @@ void app_main(void) {
                 sensor_values.x_gyro, sensor_values.y_gyro, sensor_values.z_gyro);
         }
 
+        // Converting data from string format to an array of chars
+        snprintf(str_ax, sizeof(str_ax), "AX:%d", sensor_values.x_accel);
+        snprintf(str_ay, sizeof(str_ay), "AY:%d", sensor_values.y_accel);
+        snprintf(str_az, sizeof(str_az), "AZ:%d", sensor_values.z_accel);
+
+        snprintf(str_gx, sizeof(str_gx), "GX:%d", sensor_values.x_gyro);
+        snprintf(str_gy, sizeof(str_gy), "GY:%d", sensor_values.y_gyro);
+        snprintf(str_gz, sizeof(str_gz), "GZ:%d", sensor_values.z_gyro);
+
+        // Accelerometer coordinates (placed on the left)
+        oled_draw_string(0, 4, str_ax);
+        oled_draw_string(0, 24, str_ay); 
+        oled_draw_string(0, 44, str_az); 
+
+        // Gyroscope coordinates (placed on the right)
+        oled_draw_string(68, 4, str_gx); 
+        oled_draw_string(68, 24, str_gy);  
+        oled_draw_string(68, 44, str_gz);  
+
+        oled_refresh_screen(oled_panel_handle);
+
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
-
