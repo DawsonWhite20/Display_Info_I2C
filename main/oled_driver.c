@@ -38,8 +38,32 @@ esp_err_t oled_sensor_init(i2c_master_bus_handle_t bus_handle,
         esp_lcd_panel_init(*out_panel_handle);
         esp_lcd_panel_disp_on_off(*out_panel_handle, true);
 
-        memset(framebuffer, 0, sizeof(framebuffer));
+        memset(framebuffer, 0, sizeof(framebuffer)); // Clears the RAM of the OLED bitmap
         esp_lcd_panel_draw_bitmap(*out_panel_handle, 0, 0, 128, 64, framebuffer);
         
         return ESP_OK;
+}
+
+void oled_draw_pixel(int x, int y, bool color) {
+    // Returns if the x or y coordinate are outside the 128 x 64 pixel size of the OLED screen
+    if (x < 0 || x >= 128 || y < 0 || y >= 64) return;
+
+    // Calculates both the byte and bit index of the pixel
+    int byte_index = x + (y / 8) * 128;
+    int bit_index = y % 8;
+
+    if (color) {
+        framebuffer[byte_index] |= (1 << bit_index); // Bitwise OR draws a white pixel at the bit 
+    }
+    else {
+        framebuffer[byte_index] &= ~(1 << bit_index); // Bitwise AND-NOT clears the pixel at the bit
+    }
+}
+
+void oled_refresh_screen(esp_lcd_panel_handle_t out_panel_handle) {
+    // Draw the entire canvas on the OLED
+    esp_lcd_panel_draw_bitmap(out_panel_handle, 0, 0, 128, 64, framebuffer);
+
+    // Clears the RAM of the OLED bitmap
+    memset(framebuffer, 0, sizeof(framebuffer));
 }

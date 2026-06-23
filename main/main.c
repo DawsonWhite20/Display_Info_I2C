@@ -6,6 +6,7 @@
 #include "esp_lcd_io_i2c.h"
 
 #include "sensor_driver.h"
+#include "oled_driver.h"
 
 // Only two options for scl and sda for esp32 without additional routing
 #define I2C_MASTER_SCL  22
@@ -38,6 +39,7 @@ void app_main(void) {
     // OLED initialization of io and panel handles
     esp_lcd_panel_io_handle_t oled_io_handle = NULL;
     esp_lcd_panel_handle_t oled_panel_handle = NULL;
+    ESP_ERROR_CHECK(oled_sensor_init(master_bus_handle, &oled_io_handle, &oled_panel_handle));
 
     while (1) {
         // Typedef struct from sensor_driver.h
