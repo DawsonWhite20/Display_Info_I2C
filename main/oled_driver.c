@@ -1,10 +1,13 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
 #include "driver/i2c_master.h"
-#include "oled_driver.h"
 #include "esp_lcd_panel_io.h"
 #include "esp_lcd_io_i2c.h"
 #include "esp_lcd_panel_vendor.h"
 #include "esp_lcd_panel_ops.h"
+
+#include "oled_driver.h"
 
 #define OLED_DEVICE_ADDRESS 0x3C
 #define OLED_SCL_SPEED_HZ 400000 // OLED is practically sent an image, so processing needs to move faster

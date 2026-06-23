@@ -2,7 +2,8 @@
 #define OLED_DRIVER_H
 
 #include "driver/i2c_master.h"
-#include "esp_err.h"
+#include "esp_lcd_panel_io.h"
+#include "esp_lcd_panel_vendor.h"
 
 /**
  * @brief Registers the io and panel handle into the master bus as well as sets the screen up for use
