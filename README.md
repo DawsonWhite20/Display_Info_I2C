@@ -6,6 +6,8 @@ An independent ESP32 based system that uses I2C communication protocols to gathe
 
 ## Schematic
 
+<img width="741" height="652" alt="Screenshot 2026-06-23 224548" src="https://github.com/user-attachments/assets/9e932594-965f-4fc1-a3ae-dbaec7139595" />
+
 ## Hardware and Software Requirements
 
 ### Hardware Requirements
