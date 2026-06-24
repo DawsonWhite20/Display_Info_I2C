@@ -8,6 +8,8 @@ An independent ESP32 based system that uses I2C communication protocols to gathe
 
 <img width="741" height="652" alt="Screenshot 2026-06-23 224548" src="https://github.com/user-attachments/assets/9e932594-965f-4fc1-a3ae-dbaec7139595" />
 
+*Schematic is shown with an ESP32, MPU6050, and SSD1306-driven OLED screen. All hardware is compatible with original system and GPIO pins stay consistent.*
+
 ## Hardware and Software Requirements
 
 ### Hardware Requirements
