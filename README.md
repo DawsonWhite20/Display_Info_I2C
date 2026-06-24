@@ -1,4 +1,6 @@
-# Project Description
+# ESP32 Motion Tracking Telemetry System
+
+## Project Description
 
 An independent ESP32 based system that uses I2C communication protocols to gather accelerometer and gyroscope data from a MPU6500 6-axis motion tracking sensor and display that information in real-time on a SSD1315-driven OLED screen. Developed low-level drivers to process and map data vectors directly onto a portable display eliminating the need to stay near the user's console.
 
