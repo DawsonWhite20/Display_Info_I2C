@@ -1,32 +1,24 @@
-# _Sample project_
+# Project Description
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+An independent ESP32 based system that uses I2C communication protocols to gather accelerometer and gyroscope data from a MPU6500 6-axis motion tracking sensor and display that information in real-time on a SSD1315-driven OLED screen. Developed low-level drivers to process and map data vectors directly onto a portable display eliminating the need to stay near the user's console.
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+## Schematic
+
+## Hardware and Software Requirements
+
+### Hardware Requirements
+
+* ESP32 Development Board
+* MPU6500 6-Axis Motion Tracking Sensor
+* SSD1315-Driven 128/64 Dot Matrix OLED Screen
+* Breadboard, Jumper Wires, Micro-USB/USB-C
+
+### Software Requirements
+
+* Recommended: Visual Studio Code IDE with ESP-IDF Extension
+* Espressif IoT Development Framework (ESP-IDF)
+* CMake and Ninja Build Systems
+* Windows 10/11, Linux, MacOS
 
 
-
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
-
-## Example folder contents
-
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
-
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
-
-Below is short explanation of remaining files in the project folder.
-
-```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
-```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+### See [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project) on how to build the environment for this system.
